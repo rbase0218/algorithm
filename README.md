@@ -1,0 +1,2 @@
+# algorithm
+📌 Happy Algorithm
