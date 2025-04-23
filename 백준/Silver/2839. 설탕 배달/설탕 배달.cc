@@ -1,23 +1,34 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <vector>
+#include <string>
 using namespace std;
 
-int main(void) {
-	int n = 0;
+int main() {
+	int n, ans = 0;
+	vector<int> k = { 5, 3 };
 	cin >> n;
-	vector<int> dp(n + 1, 5001);
 
-	dp[0] = 0;
+	int i = 0;
+	while (n > 0)
+	{
+		if (n % 5 == 0)
+		{
+			ans += (n / 5);
+			break;
+		}
+		else
+		{
+			n -= 3;
 
-	for (int i = 0; i <= n; ++i) {
-		if (i >= 3 && dp[i - 3] != 5001)
-			dp[i] = min(dp[i], dp[i - 3] + 1);
-		if (i >= 5 && dp[i - 5] != 5001)
-			dp[i] = min(dp[i], dp[i - 5] + 1);
+			if (n < 0)
+				ans = -1;
+			else
+				ans++;
+		}
 	}
-
-	cout << ((dp[n] == 5001) ? -1 : dp[n]) << endl;
+	
+	cout << ans << endl;
 
 	return 0;
 }
