@@ -11,21 +11,20 @@ int main() {
 	bool maps[101][101] = { false, };
 
 	int a, b, c, d;
-	bool beforeA = false, beforeB = false;
+	int ans = 0;
 	for (int i = 0; i < 4; ++i) {
 		cin >> a >> b >> c >> d;
 
 		for (int i = a; i < c; ++i) {
 			for (int j = b; j < d; ++j)
-				maps[i][j] = true;
-		}
-	}
+			{
+				if (maps[i][j])
+					ans--;
 
-	int ans = 0;
-	for (int i = 0; i < 101; ++i) {
-		for (int j = 0; j < 101; ++j) {
-			if(maps[i][j])
-				ans++;
+				maps[i][j] = true;
+				if (maps[i][j])
+					ans++;
+			}
 		}
 	}
 
