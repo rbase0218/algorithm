@@ -1,36 +1,29 @@
-#include <iostream>
-#include <algorithm>
-#include <vector>
-#include <string>
-#include <stack>
+#include <bits/stdc++.h>
 #include <unordered_map>
-#include <map>
 
 using namespace std;
 
-int main() {
+bool compare(const pair<string, int>& a, const pair<string, int>& b) {
+	return a.second < b.second;
+}
+
+int main(void) {
 	int k, l;
 	cin >> k >> l;
-	unordered_map<string, int> students;
-	map<int, string> sort_students;
 
-	string num;
-	for (int i = 0; i < l; ++i) {
-		cin >> num;
-		students[num] = i;
+	unordered_map<string, int> student;
+	for (int i = 0; i < l; i++) {
+		string number;
+		cin >> number;
+		student[number] = i;
 	}
 
-	for (const auto& pair : students) {
-		sort_students[pair.second] = pair.first;
-	}
-	for (const auto& pair : sort_students)
-	{
-		cout << pair.second << '\n';
+	vector<pair<string, int>> v;
+	for (auto& i : student)
+		v.push_back(i);
 
-		k--;
-		if (k < 1)
-			break;
-	}
-
+	sort(v.begin(), v.end(), compare);
+	for (int i = 0; i < min(k, (int)v.size()); i++)
+		cout << v[i].first << '\n';
 	return 0;
 }
