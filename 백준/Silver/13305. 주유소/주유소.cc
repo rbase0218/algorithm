@@ -5,11 +5,13 @@
 #include <algorithm>
 using namespace std;
 
+#define ll long long
+
 int main() {
     int n;
     cin >> n;
-    vector<int> dist(n - 1, 0);
-    vector<int> cost(n, 0);
+    vector<ll> dist(n - 1, 0);
+    vector<ll> cost(n, 0);
     for (int i = 0; i < n - 1; ++i) {
         cin >> dist[i];
     }
@@ -18,9 +20,9 @@ int main() {
     }
 
     // 1. 이전에 방문한 주유소의 가격
-    int min_cost = cost[0];
-    int sum = dist[0];
-    int ans = 0;
+    ll min_cost = cost[0];
+    ll sum = dist[0];
+    ll ans = 0;
 
     for (int i = 1; i < n - 1; ++i) {
         if (min_cost > cost[i])
