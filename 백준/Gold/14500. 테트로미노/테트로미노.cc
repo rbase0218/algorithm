@@ -1,6 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <queue>
+#include <string>
 #include <algorithm>
+#include <cmath>
+#include <iomanip>
+#include <map>
 using namespace std;
 
 int n, m;
@@ -38,19 +43,15 @@ void checkExtra(int x, int y) {
     int center = board[x][y];
     for (int i = 0; i < 4; i++) {
         int temp = center;
-        bool valid = true;
         for (int j = 0; j < 3; j++) {
             int dir = (i + j) % 4;
             int nx = x + dx[dir];
             int ny = y + dy[dir];
-            if (nx < 0 || ny < 0 || nx >= n || ny >= m) {
-                valid = false;
-                break;
-            }
+            if (nx < 0 || ny < 0 || nx >= n || ny >= m) continue;
+            
             temp += board[nx][ny];
-        }
-        if (valid)
             answer = max(answer, temp);
+        }
     }
 }
 
