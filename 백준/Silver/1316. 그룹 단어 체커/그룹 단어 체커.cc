@@ -1,40 +1,39 @@
 #include <iostream>
-#include <algorithm>
-#include <vector>
 #include <string>
-#include <stack>
-#include <map>
+#include <vector>
 
 using namespace std;
 
 int main() {
-    int n, ans = 0;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
     cin >> n;
 
-    string text;
-    while (n--) {
-        cin >> text;
-        bool isGroupWord = true;
-        string temp = "";
+    int count = 0;
+    for (int i = 0; i < n; ++i) {
+        string s;
+        cin >> s;
 
-        for (int i = 0; i < text.size(); ++i) {
-            bool exists = temp.find(text[i]) != string::npos;
+        vector<bool> seen(26, false);
+        char prev = '\0';
+        bool isGroup = true;
 
-            if (exists && (i == 0 || text[i] != text[i - 1])) {
-                isGroupWord = false;
-                break;
-            }
-
-            if (!exists) {
-                temp += text[i];
+        for (char c : s) {
+            if (c != prev) {
+                if (seen[c - 'a']) {
+                    isGroup = false;
+                    break;
+                }
+                seen[c - 'a'] = true;
+                prev = c;
             }
         }
 
-        if (isGroupWord) {
-            ans++;
-        }
+        if (isGroup) ++count;
     }
 
-    cout << ans;
+    cout << count << '\n';
     return 0;
 }
