@@ -5,18 +5,22 @@
 #include <vector>
 using namespace std;
 
-void bubble_sort(vector<int>& nums)
+void selection_sort(vector<int>& nums)
 {
 	int size = nums.size();
+
 	for (int i = 0; i < size - 1; ++i) {
-		for (int j = i + 1; j < size; ++j) {
-			if (nums[i] > nums[j])
+		int min = i;
+
+		for (int j = min + 1; j < size; ++j) {
+			if (nums[min] > nums[j])
 			{
-				int temp = nums[i];
-				nums[i] = nums[j];
-				nums[j] = temp;
+				min = j;
 			}
 		}
+		
+		if (i != min)
+			swap(nums[i], nums[min]);
 	}
 }
 
@@ -31,7 +35,7 @@ int main(void)
 		cin >> nums[i];
 	}
 
-	bubble_sort(nums);
+	selection_sort(nums);
 
 	int front = 0;
 	int back = nums.size() - 1;
